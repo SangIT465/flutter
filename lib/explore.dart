@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'services/explore_service.dart';
+import 'TourMore.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -391,9 +392,19 @@ class _ExploreScreenState extends State<ExploreScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Text(
-            "SEE MORE",
-            style: TextStyle(color: Colors.teal),
+          GestureDetector(
+            onTap: text == "Best Guides" ? null : () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const TourMore()),
+              );
+            },
+            child: Text(
+              "SEE MORE",
+              style: TextStyle(
+                color: text == "Best Guides" ? Colors.grey : Colors.teal,
+              ),
+            ),
           )
         ],
       ),

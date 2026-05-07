@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'services/next_trips_service.dart';
 import 'next_trip_detail_page.dart';
+import 'payment.dart';
 
 class NextTripsPage extends StatefulWidget {
   const NextTripsPage({super.key});
@@ -253,9 +254,10 @@ class _NextTripsPageState extends State<NextTripsPage> {
                                   ),
                                 );
                               } else if (buttonText == "Pay") {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text("Pay feature is coming soon"),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const PaymentPage(),
                                   ),
                                 );
                               }

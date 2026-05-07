@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'explore.dart';
 import 'mytrip.dart';
 import 'chat.dart';
+import 'profile.dart';
 
 /// ================= MAIN CONTAINER =================
 
@@ -96,31 +97,12 @@ class ProductCatalogPage extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title: const Text("Products"),
+        title: const Text("Products comming soon..."),
         centerTitle: true,
       ),
 
       body: const Center(
-        child: Text("Product Catalog Content"),
-      ),
-    );
-  }
-}
-
-/// ================= PROFILE PAGE =================
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Profile Page",
-          style: TextStyle(fontSize: 22),
-        ),
+        child: Text("Product Catalog Content comming soon..."),
       ),
     );
   }

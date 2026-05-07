@@ -1,73 +1,107 @@
 import 'package:flutter/material.dart';
+import 'services/past_trips_service.dart';
 
-class PastTripsPage extends StatelessWidget {
+class PastTripsPage extends StatefulWidget {
   const PastTripsPage({super.key});
 
   @override
+  State<PastTripsPage> createState() => _PastTripsPageState();
+}
+
+class _PastTripsPageState extends State<PastTripsPage> {
+  List<dynamic> pastTrips = [];
+  bool isLoading = true;
+  String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchPastTrips();
+  }
+
+  Future<void> fetchPastTrips() async {
+    try {
+      final data = await PastTripsService.getPastTrips();
+      setState(() {
+        pastTrips = data;
+        isLoading = false;
+        errorMessage = null;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+        errorMessage = e.toString();
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: const [
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
 
-        PastTripCard(
-          title: "Quoc Tu Giam Temple",
-          location: "Hanoi, Vietnam",
-          image: "assets/quoctugiam.png",
-          date: "Feb 2, 2020",
-          time: "8:00 - 10:00",
-          guide: "Emmy",
-          avatar: "assets/anna.png",
-          highlight: false,
+    if (errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            errorMessage!,
+            textAlign: TextAlign.center,
+          ),
         ),
+      );
+    }
 
-        SizedBox(height: 20),
-
-        PastTripCard(
-          title: "Dinh Doc Lap",
-          location: "Ho Chi Minh, Vietnam",
-          image: "assets/dinhdoclap.png",
-          date: "Feb 2, 2020",
-          time: "8:00 - 10:00",
-          guide: "Khai Ho",
-          avatar: "assets/john.png",
-          highlight: false,
+    if (pastTrips.isEmpty) {
+      return RefreshIndicator(
+        onRefresh: fetchPastTrips,
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: const [
+            SizedBox(height: 80),
+            Center(child: Text("No past trips")),
+          ],
         ),
+      );
+    }
 
-      ],
+    return RefreshIndicator(
+      onRefresh: fetchPastTrips,
+      child: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: pastTrips.length,
+        itemBuilder: (context, index) {
+          final trip = Map<String, dynamic>.from(pastTrips[index]);
+
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: PastTripCard(trip: trip),
+          );
+        },
+      ),
     );
   }
 }
 
 class PastTripCard extends StatelessWidget {
-  final String title;
-  final String location;
-  final String image;
-  final String date;
-  final String time;
-  final String guide;
-  final String avatar;
-  final bool highlight;
+  final Map<String, dynamic> trip;
 
   const PastTripCard({
     super.key,
-    required this.title,
-    required this.location,
-    required this.image,
-    required this.date,
-    required this.time,
-    required this.guide,
-    required this.avatar,
-    required this.highlight,
+    required this.trip,
   });
 
   @override
   Widget build(BuildContext context) {
+    final highlight = trip["highlight"] == true;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        border: highlight
-            ? Border.all(color: Colors.blue, width: 2)
-            : null,
+        border: highlight ? Border.all(color: Colors.blue, width: 2) : null,
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -79,101 +113,101 @@ class PastTripCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          /// IMAGE
           ClipRRect(
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(18),
             ),
-            child: AspectRatio(
-              aspectRatio: 342 / 135,
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
+            child: Image.network(
+              trip["image"] ?? "",
+              height: 135,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  height: 135,
+                  width: double.infinity,
+                  color: Colors.grey.shade300,
+                  alignment: Alignment.center,
+                  child: const Icon(Icons.broken_image, color: Colors.grey),
+                );
+              },
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(14),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-                /// TEXT
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Row(
                         children: [
                           const Icon(Icons.location_on,
                               size: 16, color: Color(0xff19c2a4)),
                           const SizedBox(width: 4),
-                          Text(
-                            location,
-                            style: const TextStyle(
-                              color: Color(0xff19c2a4),
-                              fontSize: 12,
+                          Expanded(
+                            child: Text(
+                              trip["location"] ?? "",
+                              style: const TextStyle(
+                                color: Color(0xff19c2a4),
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ],
                       ),
-
                       const SizedBox(height: 6),
-
                       Text(
-                        title,
+                        trip["title"] ?? "",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-
                       const SizedBox(height: 6),
-
                       Row(
                         children: [
                           const Icon(Icons.calendar_today,
                               size: 14, color: Colors.grey),
                           const SizedBox(width: 6),
-                          Text(date,
-                              style: const TextStyle(fontSize: 12)),
+                          Text(
+                            trip["date"] ?? "",
+                            style: const TextStyle(fontSize: 12),
+                          ),
                         ],
                       ),
-
                       const SizedBox(height: 4),
-
                       Row(
                         children: [
                           const Icon(Icons.access_time,
                               size: 14, color: Colors.grey),
                           const SizedBox(width: 6),
-                          Text(time,
-                              style: const TextStyle(fontSize: 12)),
+                          Text(
+                            trip["time"] ?? "",
+                            style: const TextStyle(fontSize: 12),
+                          ),
                         ],
                       ),
-
                       const SizedBox(height: 4),
-
                       Row(
                         children: [
                           const Icon(Icons.person,
                               size: 14, color: Colors.grey),
                           const SizedBox(width: 6),
                           Text(
-                            guide,
+                            trip["guide"] ?? "",
                             style: const TextStyle(
-                                fontSize: 12, color: Colors.grey),
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-
-                /// AVATAR
                 Container(
                   padding: const EdgeInsets.all(3),
                   decoration: BoxDecoration(
@@ -185,7 +219,11 @@ class PastTripCard extends StatelessWidget {
                   ),
                   child: CircleAvatar(
                     radius: 24,
-                    backgroundImage: AssetImage(avatar),
+                    backgroundImage: NetworkImage(trip["avatar"] ?? ""),
+                    onBackgroundImageError: (_, __) {},
+                    child: (trip["avatar"] == null || trip["avatar"] == "")
+                        ? const Icon(Icons.person)
+                        : null,
                   ),
                 )
               ],

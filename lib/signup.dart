@@ -59,6 +59,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: _passwordController.text.trim(),
       );
 
+      final String fullName = '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}'.trim();
+      await userCredential.user!.updateDisplayName(fullName);
+
       final idToken = await userCredential.user!.getIdToken();
 
       if (idToken == null) {

@@ -178,7 +178,7 @@ let tourMoreTours = [
     to: "Sydney",
     days: 5,
     price: 1200.0,
-    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238145/MelbourneSydney.png",
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238146/MelbourneSydney_ppdbuj.png",
     rating: 4.5,
     favorite: true
   },
@@ -508,6 +508,172 @@ const nextTripDetails = [
     ]
   }
 ];
+const pastTrips = [
+  {
+    id: 201,
+    title: "Quoc Tu Giam Temple",
+    location: "Hanoi, Vietnam",
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238147/quoctugiam_aj6bge.png",
+    date: "Feb 2, 2020",
+    time: "8:00 - 10:00",
+    guide: "Emmy",
+    avatar: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238139/anna_n6mlql.png",
+    highlight: false
+  },
+  {
+    id: 202,
+    title: "Dinh Doc Lap",
+    location: "Ho Chi Minh, Vietnam",
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238140/dinhdoclap_wtsm3i.png",
+    date: "Feb 2, 2020",
+    time: "8:00 - 10:00",
+    guide: "Khai Ho",
+    avatar: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238144/John_adlt2a.png",
+    highlight: false
+  }
+];
+
+const pastTripDetails = [
+  {
+    id: 201,
+    title: "Quoc Tu Giam Temple",
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238147/quoctugiam_aj6bge.png",
+    price: 220.0,
+    oldPrice: 280.0,
+    provider: "travel viet",
+    summary: {
+      from: "Hanoi",
+      duration: "1 day",
+      departureDate: "Feb 2, 2020",
+      departurePlace: "Hanoi",
+      destination: "Quoc Tu Giam Temple"
+    },
+    schedule: [
+      {
+        day: 1,
+        title: "Temple Tour",
+        timeBlocks: [
+          {
+            time: "08:00AM",
+            title: "Visit Temple",
+            description: "Explore the historic Temple of Literature."
+          }
+        ]
+      }
+    ],
+    policies: [
+      { label: "Adult", price: 220 },
+      { label: "Child", price: 120 }
+    ]
+  },
+  {
+    id: 202,
+    title: "Dinh Doc Lap",
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238140/dinhdoclap_wtsm3i.png",
+    price: 260.0,
+    oldPrice: 320.0,
+    provider: "travel viet",
+    summary: {
+      from: "Ho Chi Minh",
+      duration: "1 day",
+      departureDate: "Feb 2, 2020",
+      departurePlace: "Ho Chi Minh",
+      destination: "Dinh Doc Lap"
+    },
+    schedule: [
+      {
+        day: 1,
+        title: "City History Tour",
+        timeBlocks: [
+          {
+            time: "09:00AM",
+            title: "Visit Reunification Palace",
+            description: "Explore one of the iconic historical landmarks."
+          }
+        ]
+      }
+    ],
+    policies: [
+      { label: "Adult", price: 260 },
+      { label: "Child", price: 130 }
+    ]
+  }
+];
+const wishListTrips = [
+  {
+    id: 301,
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238146/MelbourneSydney_ppdbuj.png",
+    title: "Melbourne - Sydney",
+    date: "Jan 30, 2020",
+    days: "3 days",
+    price: "$600.00",
+    liked: true,
+    saved: true,
+    likes: 1247
+  },
+  {
+    id: 302,
+    image: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1776238141/HanoiHaLongBay_yz1qcd.png",
+    title: "Hanoi - Ha Long Bay",
+    date: "Jan 30, 2020",
+    days: "3 days",
+    price: "$300.00",
+    liked: false,
+    saved: true,
+    likes: 1247
+  }
+];
+const profileData = {
+  profile: {
+    cover: "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/profile_fw21uu.png"
+  },
+  photos: [
+    "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/myphoto1_eecrgy.png",
+    "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114381/myphoto2_f9emed.png",
+    "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114382/myphoto3_ui9pdt.jpg",
+    "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/myphoto4_d8csvm.jpg"
+  ],
+  journeys: [
+    {
+      id: 1,
+      title: "A memory in Danang",
+      location: "Danang, Vietnam",
+      date: "Jan 20, 2020",
+      likes: 234,
+      images: [
+        "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/myJourneys1_vo6ccw.jpg",
+        "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/myJourneys2_gkfrm1.jpg",
+        "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/myJourneys3_tp0mqq.jpg"
+      ]
+    },
+    {
+      id: 2,
+      title: "Sapa in spring",
+      location: "Sapa, Vietnam",
+      date: "Jan 20, 2020",
+      likes: 234,
+      images: [
+        "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114382/myJourneys4_j0uotk.jpg",
+        "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114383/myJourneys3_tp0mqq.jpg",
+        "https://res.cloudinary.com/dtcc4spyv/image/upload/v1778114381/myJourneys5_rgq13w.jpg"
+      ]
+    }
+  ]
+};
+
+const checkoutData = {
+  location: "Hanoi, Vietnam",
+  image: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=600&fit=crop",
+  guideAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&fit=crop",
+  date: "Feb 2, 2020",
+  time: "8:00AM - 10:00AM",
+  guideName: "Emmy",
+  travelers: 2,
+  attractions: ["Ho Guom", "Ho Hoan Kiem", "Pho 12 Pho Kim Ma"],
+  total: 20.00,
+  upfrontPayment: 10.00
+};
+
 module.exports = {
   banners,
   journeys,
@@ -520,7 +686,10 @@ module.exports = {
   currentTrips,
   tripDetails,
   nextTrips,
-  users,
   nextTripDetails,
-  nextTrips
+  pastTrips,
+  wishListTrips,
+  users,
+  profileData,
+  checkoutData
 };

@@ -4,7 +4,7 @@ import 'api_service.dart';
 
 class TourMoreService {
   static Future<Map<String, dynamic>> getTourMoreData({String query = ''}) async {
-    final uri = Uri.parse('${ApiService.baseUrl}/tour-more')
+    final uri = Uri.parse('${ApiService.baseUrl}/tourMore')
         .replace(queryParameters: query.isNotEmpty ? {'q': query} : null);
 
     final response = await http.get(uri);
@@ -18,7 +18,7 @@ class TourMoreService {
 
   static Future<void> toggleFavorite(dynamic id) async {
     final response = await http.patch(
-      Uri.parse('${ApiService.baseUrl}/tour-more/tours/$id/favorite'),
+      Uri.parse('${ApiService.baseUrl}/tourMore/tours/$id/favorite'),
     );
 
     if (response.statusCode != 200) {
