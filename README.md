@@ -79,21 +79,27 @@ flutter run -d emulator-5554    # Android Emulator
 
 Base URL: `http://localhost:3000/api`
 
-| Method | Endpoint | Mô tả |
-|--------|----------|-------|
-| POST | `/auth/firebase` | Đăng nhập Firebase |
-| GET | `/explore` | Danh sách khám phá |
-| PATCH | `/tours/:id/like` | Like tour |
-| PATCH | `/tours/:id/save` | Lưu tour |
-| GET | `/my-trips/current` | Chuyến đi hiện tại |
-| GET | `/my-trips/detail/:id` | Chi tiết chuyến đi |
-| GET | `/next-trips` | Chuyến đi sắp tới |
-| GET | `/next-trips/detail/:id` | Chi tiết chuyến đi sắp tới |
-| GET | `/past-trips` | Chuyến đi đã qua |
-| GET | `/payment/preview` | Xem trước thanh toán |
-| POST | `/payment/process` | Xử lý thanh toán |
-| GET | `/profile` | Hồ sơ người dùng |
-| GET | `/tourMore` | Danh sách tour thêm |
-| PATCH | `/tourMore/tours/:id/favorite` | Yêu thích tour |
-| GET | `/wish-list` | Danh sách yêu thích |
-| PATCH | `/wish-list/:id/like` | Like trong wish list |
+**Tổng cộng: 20 endpoints**
+
+| # | Method | Endpoint | Mô tả |
+|---|--------|----------|-------|
+| 1 | POST | `/auth/firebase` | Đăng nhập Firebase |
+| 2 | GET | `/explore` | Danh sách khám phá |
+| 3 | PATCH | `/tours/:id/like` | Like tour |
+| 4 | PATCH | `/tours/:id/save` | Lưu tour |
+| 5 | GET | `/my-trips/current` | Chuyến đi hiện tại |
+| 6 | GET | `/my-trips/detail/:id` | Chi tiết chuyến đi hiện tại |
+| 7 | GET | `/next-trips` | Chuyến đi sắp tới |
+| 8 | GET | `/next-trips/detail/:id` | Chi tiết chuyến đi sắp tới |
+| 9 | GET | `/past-trips` | Danh sách chuyến đi đã qua |
+| 10 | GET | `/past-trips/detail/:id` | Chi tiết chuyến đi đã qua |
+| 11 | GET | `/payment/preview` | Xem trước thanh toán |
+| 12 | POST | `/payment/process` | Xử lý thanh toán |
+| 13 | GET | `/profile` | Hồ sơ người dùng |
+| 14 | GET | `/tourMore` | Danh sách tour (hỗ trợ `?q=` tìm kiếm) |
+| 15 | PATCH | `/tourMore/tours/:id/favorite` | Yêu thích tour |
+| 16 | GET | `/wish-list` | Danh sách yêu thích |
+| 17 | PATCH | `/wish-list/:id/like` | Like trong wish list |
+| 18 | DELETE | `/wish-list/:id` | Xóa khỏi wish list |
+| 19 | GET | `/news` | Danh sách tin tức |
+| 20 | GET | `/guides` | Danh sách hướng dẫn viên |
