@@ -688,6 +688,7 @@ module.exports = {
   nextTrips,
   nextTripDetails,
   pastTrips,
+  pastTripDetails,
   wishListTrips,
   users,
   profileData,

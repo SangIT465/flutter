@@ -6,4 +6,15 @@ router.get("/", (req, res) => {
   res.json(data.pastTrips);
 });
 
+router.get("/detail/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const trip = data.pastTripDetails.find((item) => item.id === id);
+
+  if (!trip) {
+    return res.status(404).json({ message: "Past trip detail not found" });
+  }
+
+  res.json(trip);
+});
+
 module.exports = router;

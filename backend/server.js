@@ -10,6 +10,8 @@ const wishListRoutes = require("./routes/wishListRoutes");
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
+const newsRoutes = require("./routes/newsRoutes");
+const guidesRoutes = require("./routes/guidesRoutes");
 const app = express();
 const PORT = 3000;
 
@@ -30,6 +32,8 @@ app.use("/api/wish-list", wishListRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/news", newsRoutes);
+app.use("/api/guides", guidesRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });

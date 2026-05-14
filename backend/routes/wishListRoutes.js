@@ -19,4 +19,16 @@ router.patch("/:id/like", (req, res) => {
   res.json(trip);
 });
 
+router.delete("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const index = data.wishListTrips.findIndex((item) => item.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Trip not found" });
+  }
+
+  const deleted = data.wishListTrips.splice(index, 1)[0];
+  res.json({ message: "Removed from wish list", data: deleted });
+});
+
 module.exports = router;
